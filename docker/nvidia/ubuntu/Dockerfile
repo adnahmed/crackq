@@ -1,4 +1,4 @@
-FROM nvidia/cuda:runtime-ubuntu20.04
+FROM nvidia/cuda:12.1.0-runtime-ubuntu22.04
 
 #ENV DEBIAN_FRONTEND noninteractive
 
@@ -10,8 +10,8 @@ ENV PYTHONPATH=$DOCKYARD:/opt/crackq/build/crackq
 
 # Update & install packages for installing hashcat
 RUN apt-get update && \
-    apt-get install -y wget p7zip gcc g++ make build-essential git libcurl4-openssl-dev libssl-dev zlib1g-dev python3.7 \
-    python3.7-dev python3-pip libldap2-dev libsasl2-dev libssl-dev xmlsec1 libxmlsec1-openssl
+    apt-get install -y wget p7zip gcc g++ make build-essential git libcurl4-openssl-dev libssl-dev zlib1g-dev python3 python3-dev \
+    python3-pip libldap2-dev libsasl2-dev libssl-dev xmlsec1 libxmlsec1-openssl
 
 # Copy the code to the build dir
 COPY . $DOCKYARD
