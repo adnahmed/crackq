@@ -28,9 +28,14 @@ services:
             - /var/crackq/:/var/crackq
             - ./crackq:/opt/crackq/build/crackq/
         stdin_open: true
-        runtime: nvidia
         user: crackq
         tty: true
+        deploy: 
+            resources:
+                reservations:
+                    devices:
+                        - driver: nvidia
+                          capabilities: [gpu]
         environment:
                 PYTHONPATH: "/opt/crackq/build/"
                 MAIL_USERNAME: ${MAIL_USERNAME}
