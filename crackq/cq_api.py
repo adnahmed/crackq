@@ -38,7 +38,7 @@ from marshmallow import Schema, fields, validate, ValidationError
 from marshmallow.validate import Length, Range
 from operator import itemgetter
 from pathlib import Path
-from pypal import pypal
+# from pypal import pypal
 from redis import Redis
 from rq import Queue
 from rq.serializers import JSONSerializer
@@ -1650,29 +1650,29 @@ def reporter(cracked_path, hash_path, report_path, donut_path,
     """
     Simple method to call pypal and save report (html & json)
     """
-    report = pypal.Report(cracked_path=cracked_path,
-                          hash_path=hash_path,
-                          lang='EN',
-                          lists='/opt/crackq/build/pypal/src/lists/')
-    if policy_check:
-        policy = {
-                'length': complexity_length,
-                }
-    else:
-        policy = None
-    try:
-        stats = report.get_stats(match=admin_list, policy=policy)
-        donut = pypal.DonutGenerator(stats)
-        donut = donut.gen_donut()
-        donut.savefig(donut_path, bbox_inches='tight', dpi=500)
-        donut_json = {'ad_stats': stats}
-    except KeyError as err:
-        logger.warning('Error generating AD analysis, missing --username: {}'.format(err))
-        donut_json = {'ad_stats': None}
-    rep_json = report.report_gen()
-    report_json = dict(rep_json, **donut_json)
-    with open(report_path, 'w') as fh_report:
-        fh_report.write(json.dumps(report_json))
+    # report = pypal.Report(cracked_path=cracked_path,
+    #                       hash_path=hash_path,
+    #                       lang='EN',
+    #                       lists='/opt/crackq/build/pypal/src/lists/')
+    # if policy_check:
+    #     policy = {
+    #             'length': complexity_length,
+    #             }
+    # else:
+    #     policy = None
+    # try:
+    #     stats = report.get_stats(match=admin_list, policy=policy)
+    #     donut = pypal.DonutGenerator(stats)
+    #     donut = donut.gen_donut()
+    #     donut.savefig(donut_path, bbox_inches='tight', dpi=500)
+    #     donut_json = {'ad_stats': stats}
+    # except KeyError as err:
+    #     logger.warning('Error generating AD analysis, missing --username: {}'.format(err))
+    #     donut_json = {'ad_stats': None}
+    # rep_json = report.report_gen()
+    # report_json = dict(rep_json, **donut_json)
+    # with open(report_path, 'w') as fh_report:
+    #     fh_report.write(json.dumps(report_json))
     return True
 
 

@@ -17,6 +17,7 @@ services:
             context: ./build
             dockerfile: Dockerfile
         image: "nvidia-centos"
+        restart: always
         ports:
             - "127.0.0.1:8080:8080"
         depends_on:
@@ -31,12 +32,13 @@ services:
         stdin_open: true
         user: crackq
         tty: true
-        deploy: 
-            resources:
-                reservations:
-                    devices:
-                        - driver: nvidia
-                          capabilities: [gpu]
+        runtime: nvidia
+        # deploy: 
+        #     resources:
+        #         reservations:
+        #             devices:
+        #                 - driver: nvidia
+        #                   capabilities: [gpu]
         environment:
                 PYTHONPATH: "/opt/crackq/build/"
                 MAIL_USERNAME: ${MAIL_USERNAME}
@@ -57,7 +59,7 @@ services:
         container_name: "nginx"
         hostname: "nginx"
         ports:
-             - "443:443"
+             - "80:80"
         volumes:
              - /var/crackq/files/nginx/conf.d:/etc/nginx/conf.d
              - /var/crackq/logs/nginx/:/var/log/nginx/
