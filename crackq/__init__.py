@@ -17,7 +17,7 @@ from flask_migrate import Migrate
 from flask_session import Session
 from flask_seasurf import SeaSurf
 
-import nltk
+# import nltk
 
 CRACK_CONF = hc_conf()
 
@@ -101,7 +101,7 @@ def create_app():
 
 login_manager = LoginManager()
 login_manager.session_protection = "strong"
-nltk.download("wordnet")
+# nltk.download("wordnet")
 
 
 @login_manager.user_loader
