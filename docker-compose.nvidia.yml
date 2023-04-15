@@ -12,6 +12,9 @@ services:
             - crackq_net
         ports:
             - "127.0.0.1:6379:6379"
+        volumes:
+            - /var/redis/data:/data
+            - ./redis.conf:/usr/local/etc/redis/redis.conf
     crackq:
         build:
             context: ./build
