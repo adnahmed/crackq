@@ -1,7 +1,10 @@
-CrackQ
+CrackQ 
 ============
 
-Author: Daniel Turner
+Maintained By: Adnan Ahmed Khan
+@adnahmed
+
+Original Author: Daniel Turner
 @f0cker_
 
 ------------
@@ -22,6 +25,9 @@ Python 3 REST API & JS GUI for managing hashcat crack jobs in a queuing system.
 
 ![CrackQ Dashboard](docs/crackq_dash.jpg)
 
+Future Directions
+----------------
+* Improve UI e.g. [HashView](https://github.com/hashview/hashview) has a similar UI but does not have queuing system.
 
 Feature List
 ------------
