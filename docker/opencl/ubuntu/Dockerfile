@@ -18,7 +18,7 @@ RUN apt-get update -q && apt-get install --no-install-recommends -yq alien wget 
 RUN export RUNTIME_URL="http://registrationcenter-download.intel.com/akdlm/irc_nas/9019/opencl_runtime_16.1.1_x64_ubuntu_6.4.0.25.tgz" \
     && export TAR=$(basename ${RUNTIME_URL}) \
     && export DIR=$(basename ${RUNTIME_URL} .tgz) \
-    && wget -q ${RUNTIME_URL} \
+    && wget -q ${RUNTIME_URL} --no-check-certificate \
     && tar -xf ${TAR} \
     && for i in ${DIR}/rpm/*.rpm; do alien --to-deb $i; done \
     && rm -rf ${DIR} ${TAR} \
